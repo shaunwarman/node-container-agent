@@ -11,9 +11,11 @@ class Agent extends EventEmitter {
 
     this.request = null;
 
-    this.dockerVersion = options.dockerVersion || 'v1.26';
-    this.logPath = options.logPath || '/var/log/nodeagent/log.txt';
-    this.socketPath = options.socketPath || '/var/run/docker.sock';
+    const opts = this.filterArgs(options);
+
+    this.dockerVersion = opts.dockerVersion || 'v1.26';
+    this.logPath = opts.logPath || '/var/log/nodeagent/log.txt';
+    this.socketPath = opts.socketPath || '/var/run/docker.sock';
 
     this.writeStream = FS.createWriteStream(this.logPath);
 
@@ -43,6 +45,19 @@ class Agent extends EventEmitter {
     });
 
     this.request.end();
+  }
+
+  filterArgs(options) {
+    if (!options) return {};
+    const opts = {};
+
+    options.forEach(option => {
+      const [key, values] = option.split('=');
+      const value = (values.indexOf(',')) ? values.split(',') : values;
+      opts[key] = value;
+    });
+
+    return opts;
   }
 
   exit() {
