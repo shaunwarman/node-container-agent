@@ -1,0 +1,33 @@
+{
+  "name": "node-container-agent",
+  "version": "0.0.2",
+  "description": "A simple node agent to listen to docker engine events",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/tape/bin/tape ./test/test-nca.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaunwarman/node-container-agent.git"
+  },
+  "keywords": [
+    "docker",
+    "container",
+    "agent"
+  ],
+  "author": "Shaun Warman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaunwarman/node-container-agent/issues"
+  },
+  "homepage": "https://github.com/shaunwarman/node-container-agent#readme",
+  "devDependencies": {
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "debug": "^2.6.1"
+  }
+}
